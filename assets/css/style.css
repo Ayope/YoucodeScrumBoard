@@ -4,7 +4,38 @@
 
 .main-style {
     min-height: 100vh;
-    background: url(../img/cover/cover-scrum-board.png) no-repeat fixed;
-    background-size: 360px;
+    background: url(../img/pair\ of\ programmers.png) no-repeat fixed;
+    background-size: 400px;
     background-position: right bottom;
+    background-color: #eee3cb;
+}
+
+.banner{
+    background-color: #5d3c3c;
+}
+
+.btn0{
+    background-color: #5d3c3c;
+    color: white;
+}
+
+.hightcls{
+    background-color: #98755d;
+}
+
+.boody{
+    background-color: #eee3cb;
+}
+
+.heaader{
+    background-color: #5d3c3c;
+    color: white;
+}
+
+.foooter{
+    background-color: #5d3c3c;
+}
+
+.btn2{
+    background-color: #eee3cb;
 }
