@@ -23,6 +23,10 @@
     background-color: #98755d;
 }
 
+.hightcls:hover{
+    background-color:#42342c
+}
+
 .boody{
     background-color: #eee3cb;
 }
@@ -38,4 +42,24 @@
 
 .btn2{
     background-color: #eee3cb;
+}
+
+.description{
+    display: -webkit-box;     
+    -webkit-line-clamp: 1;     
+    -webkit-box-orient: vertical;     
+    overflow: hidden;     
+    text-overflow: ellipsis;
+
+}
+
+.pen , .delete{
+    font-size: 2em;
+}
+
+.pen{
+    color: #654321;
+}
+
+.delete{
 }

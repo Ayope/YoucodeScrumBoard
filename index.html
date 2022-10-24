@@ -35,7 +35,7 @@
 				</div>
 				
 				<div class="">
-					<button class="btn btn0" data-bs-toggle="modal" data-bs-target="#modal-task"><i class="bi bi-plus"></i> Add Task</button>
+					<button class="btn btn0" data-bs-toggle="modal" id="AddTaskBtn" data-bs-target="#modal-task"><i class="bi bi-plus"></i> Add Task</button>
 				</div>
 			</div>
 			
@@ -43,94 +43,11 @@
 				<div class="col-sm mb-10px">
 					<div class="">
 						<div class="border rounded-top banner">
-							<h4 class="text-white text-center pt-2 w-100">To do (<span id="to-do-tasks-count">5</span>)</h4>
+							<h4 class="text-white text-center pt-2 w-100">To do (<span id="to-do-tasks-count">0</span>)</h4>
 						</div>
 						<div class="" id="to-do-tasks">
 							<!-- TO DO TASKS HERE -->
-							<button class="w-100 border-0 border-bottom border-1 border-dark d-flex pb-5px">
-								<div class="text-start pt-1">
-									<i class="bi bi-question-circle fs-17px text-success"></i> 
-								</div>
-								<div class="ps-3 text-start">
-									<div class="fw-bold">Keep all the updated requirements in one place</div>
-									<div class="">
-										<div class="text-secondary">#1 created in 2022-10-08</div>
-										<div class="" title="There is hardly anything more frustrating than having to look for current requirements in tens of comments under the actual description or having to decide which commenter is actually authorized to change the requirements. The goal here is to keep all the up-to-date requirements and details in the main/primary description of a task. Even though the information in comments may affect initial criteria, just update this primary description accordingly.">There is hardly anything more frustrating than having t...</div>
-									</div>
-									<div class="">
-										<span class="btn-primary rounded ps-2 pe-2 fw-bold hightcls">High</span>
-										<span class="btn-muted rounded ps-2 pe-2 text-dark fw-bold">Feature</span>
-									</div>
-								</div>
-							</button>
-							<button class="w-100 border-0 border-bottom border-1 border-dark d-flex pb-5px">
-								<div class="text-start pt-1">
-									<i class="bi bi-question-circle fs-17px text-success"></i> 
-								</div>
-								<div class="ps-3 text-start">
-									<div class="fw-bold">Consider creating an acceptance criteria list</div>
-									<div class="">
-										<div class="text-secondary">#2 created in 2022-10-08</div>
-										<div class="" title="Descriptive requirements are very helpful when it comes to understanding the context of a problem, yet finally it is good to precisely specify what is expected. Thus the developer will not have to look for the actual requirements in a long, descriptive text but he will be able to easily get to the essence. One might find that sometimes — when acceptance criteria are well defined — there is little or no need for any additional information. Example:
-										a) User navigates to “/accounts” and clicks on red download CSV button
-										b) Popup appears with two buttons: “This year” and “Last year”
-										c) If user clicked on “Last year” download is initiated
-										d) CSV downloaded includes following columns…">Descriptive requirements are very helpful when it comes...</div>
-									</div>
-									<div class="">
-										<span class="btn-primary rounded ps-2 pe-2 fw-bold hightcls">High</span>
-										<span class="btn-muted rounded ps-2 pe-2 text-dark fw-bold">Feature</span>
-									</div>
-								</div>
-							</button>
-							<button class="w-100 border-0 border-bottom border-1 border-dark d-flex pb-5px">
-								<div class="text-start pt-1">
-									<i class="bi bi-question-circle fs-17px text-success"></i> 
-								</div>
-								<div class="ps-3 text-start">
-									<div class="fw-bold">Provide examples, credentials, etc</div>
-									<div class="">
-										<div class="text-secondary">#3 created in 2022-10-08</div>
-										<div class="" title="If the expectation is to process or generate some file — attach an example of such a file. If the goal is to integrate what is being developed with some service, ensure your devs have access to this service and its documentation. This list could go on and on — the bottom line is — if there is something that our developer might make use of, try to foresee it and provide them with (access to) it.">If the expectation is to process or generate some file ...</div>
-									</div>
-									<div class="">
-										<span class="btn-primary rounded ps-2 pe-2 fw-bold hightcls">High</span>
-										<span class="btn-muted rounded ps-2 pe-2 text-dark fw-bold">Feature</span>
-									</div>
-								</div>
-							</button>
-							<button class="w-100 border-0 border-bottom border-1 border-dark d-flex pb-5px">
-								<div class="text-start pt-1">
-									<i class="bi bi-question-circle fs-17px text-success"></i> 
-								</div>
-								<div class="ps-3 text-start">
-									<div class="fw-bold">Annotate</div>
-									<div class="">
-										<div class="text-secondary">#4 created in 2022-10-08</div>
-										<div class="" title="The mockup provided can sometimes be confusing for developers. Especially if it contains much more content than the scope of the task described. Drop a couple of arrows, outlines and annotations here and there to emphasize what are the important parts of the mockup from the task requirements perspective.">The mockup provided can sometimes be confusing for deve...</div>
-									</div>
-									<div class="">
-										<span class="btn-primary rounded ps-2 pe-2 fw-bold hightcls">High</span>
-										<span class="btn-muted rounded ps-2 pe-2 text-dark fw-bold">Feature</span>
-									</div>
-								</div>
-							</button>
-							<button class="w-100 border-0 rounded-bottom d-flex pb-5px ">
-								<div class="text-start pt-1">
-									<i class="bi bi-question-circle fs-17px text-success"></i> 
-								</div>
-								<div class="ps-3 text-start">
-									<div class="fw-bold">Use charts and diagrams</div>
-									<div class="">
-										<div class="text-secondary">#5 created in 2022-10-08</div>
-										<div class="" title="While it is not always necessary, sometimes it might be beneficial to prepare a flowchart, a block diagram or some other kind of concept visualization that will render it easy for the developer to comprehend the task and its scope.">While it is not always necessary, sometimes it might be...</div>
-									</div>
-									<div class="">
-										<span class="btn-primary rounded ps-2 pe-2 fw-bold hightcls">High</span>
-										<span class="btn-muted rounded ps-2 pe-2 text-dark fw-bold">Feature</span>
-									</div>
-								</div>
-							</button>
+							
 						</div>
 					</div>
 				</div>
@@ -138,75 +55,12 @@
 				<div class="col-sm mb-10px">
 					<div class="">
 						<div class="border rounded-top banner">
-							<h4 class="text-white text-center pt-2 w-100">In Progress (<span id="in-progress-tasks-count">4</span>)</h4>
+							<h4 class="text-white text-center pt-2 w-100">In Progress (<span id="in-progress-tasks-count">0</span>)</h4>
 
 						</div>
 						<div class="" id="in-progress-tasks">
 							<!-- IN PROGRESS TASKS HERE -->
-							<button class="w-100 border-0 border-bottom border-1 border-dark d-flex pb-5px">
-								<div class="text-start pt-2">
-									<i class="spinner-border spinner-border-sm text-success"></i> 
-								</div>
-								<div class="ps-3 text-start">
-									<div class="fw-bold">Describe steps to reproduce an issue</div>
-									<div class="">
-										<div class="text-secondary">#6 created in 2022-10-08</div>
-										<div class="" title="including as many details as possible.">including as many details as possible.</div>
-									</div>
-									<div class="">
-										<span class="btn-primary rounded ps-2 pe-2 fw-bold hightcls">High</span>
-										<span class="btn-muted rounded ps-2 pe-2 text-dark fw-bold">Bug</span>
-									</div>
-								</div>
-							</button>
-							<button class="w-100 border-0 border-bottom border-1 border-dark d-flex pb-5px">
-								<div class="text-start pt-2">
-									<i class="spinner-border spinner-border-sm text-success"></i> 
-								</div>
-								<div class="ps-3 text-start">
-									<div class="fw-bold">Provide access</div>
-									<div class="">
-										<div class="text-secondary">#7 created in 2022-10-08</div>
-										<div class="" title="to the affected account and services if possible. It might be hard to reproduce the exact environment on a local machine.">to the affected account and services if possible. It mi...</div>
-									</div>
-									<div class="">
-										<span class="btn-primary rounded ps-2 pe-2 fw-bold  hightcls">High</span>
-										<span class="btn-muted rounded ps-2 pe-2 text-dark fw-bold">Bug</span>
-									</div>
-								</div>
-							</button>
-							<button class="w-100 border-0 border-bottom border-1 border-dark d-flex pb-5px">
-								<div class="text-start pt-2">
-									<i class="spinner-border spinner-border-sm text-success"></i> 
-								</div>
-								<div class="ps-3 text-start">
-									<div class="fw-bold">Provide environment information</div>
-									<div class="">
-										<div class="text-secondary">#8 created in 2022-10-08</div>
-										<div class="" title="i.e., browser version, operating system version etc. Sometimes a list of installed browser plugins and extensions might be helpful as well.">i.e., browser version, operating system version etc. So...</div>
-									</div>
-									<div class="">
-										<span class="btn-primary rounded ps-2 pe-2 fw-bold  hightcls">High</span>
-										<span class="btn-muted rounded ps-2 pe-2 text-dark fw-bold">Bug</span>
-									</div>
-								</div>
-							</button>
-							<button class="w-100 border-0 rounded-bottom d-flex pb-5px">
-								<div class="text-start pt-2">
-									<i class="spinner-border spinner-border-sm text-success"></i> 
-								</div>
-								<div class="ps-3 text-start">
-									<div class="fw-bold">Provide a link to an exception and/or a stack trace</div>
-									<div class="">
-										<div class="text-secondary">#9 created in 2022-10-08</div>
-										<div class="" title="as investigating those is usually the first step to take in resolving the problem.">as investigating those is usually the first step to tak...</div>
-									</div>
-									<div class="">
-										<span class="btn-primary rounded ps-2 pe-2 fw-bold hightcls">High</span>
-										<span class="btn-muted rounded ps-2 pe-2 text-dark fw-bold">Bug</span>
-									</div>
-								</div>
-							</button>
+							
 						</div>
 					</div>
 				</div>
@@ -214,75 +68,12 @@
 				<div class="col-sm">
 					<div class="">
 						<div class="border rounded-top banner">
-							<h4 class="text-white text-center pt-2 w-100">Done (<span id="done-tasks-count">4</span>)</h4>
+							<h4 class="text-white text-center pt-2 w-100">Done (<span id="done-tasks-count">0</span>)</h4>
 
 						</div>
 						<div class=" " id="done-tasks">
 							<!-- DONE TASKS HERE -->
-							<button class="w-100 border-0 border-bottom border-1 border-dark d-flex pb-5px">
-								<div class="text-start pt-1">
-									<i class="bi bi-check-circle fs-17px text-success"></i> 
-								</div>
-								<div class="ps-3 text-start">
-									<div class="fw-bold">Provide access to logs</div>
-									<div class="">
-										<div class="text-secondary">#10 created in 2022-10-08</div>
-										<div class="" title="as they can be helpful in reproducing the steps that caused the problem in the first place.">as they can be helpful in reproducing the steps that ca...</div>
-									</div>
-									<div class="">
-										<span class="btn-primary rounded ps-2 pe-2 fw-bold hightcls">High</span>
-										<span class="btn-muted rounded ps-2 pe-2 text-dark fw-bold">Bug</span>
-									</div>
-								</div>
-							</button>
-							<button class="w-100 border-0 border-bottom border-1 border-dark d-flex pb-5px">
-								<div class="text-start pt-1">
-									<i class="bi bi-check-circle fs-17px text-success"></i> 
-								</div>
-								<div class="ps-3 text-start">
-									<div class="fw-bold">Provide access to the affected server or database dump</div>
-									<div class="">
-										<div class="text-secondary">#11 created in 2022-10-08</div>
-										<div class="" title="If it is possible and when it does not violate security policies, it is usually helpful for the developer to access the original data that might have played a role in the problem.">If it is possible and when it does not violate security...</div>
-									</div>
-									<div class="">
-										<span class="btn-primary rounded ps-2 pe-2 fw-bold hightcls">High</span>
-										<span class="btn-muted rounded ps-2 pe-2 text-dark fw-bold">Bug</span>
-									</div>
-								</div>
-							</button>
-							<button class="w-100 border-0 border-bottom border-1 border-dark d-flex pb-5px">
-								<div class="text-start pt-1">
-									<i class="bi bi-check-circle fs-17px text-success"></i> 
-								</div>
-								<div class="ps-3 text-start">
-									<div class="fw-bold">Make a screencast</div>
-									<div class="">
-										<div class="text-secondary">#12 created in 2022-10-08</div>
-										<div class="" title="It is not always necessary, but many times a short screencast (or at least a screenshot) says more than a thousand words. While working on MacOS you can use QuickTime Player for the purpose but there are plenty of tools available for other operating systems as well.">It is not always necessary, but many times a short scre...</div>
-									</div>
-									<div class="">
-										<span class="btn-primary rounded ps-2 pe-2 fw-bold hightcls">High</span>
-										<span class="btn-muted rounded ps-2 pe-2 text-dark fw-bold">Bug</span>
-									</div>
-								</div>
-							</button>
-							<button  class="w-100 border-0 rounded-bottom d-flex pb-5px">
-								<div class="text-start pt-1">
-									<i class="bi bi-check-circle fs-17px text-success"></i> 
-								</div>
-								<div class="ps-3 text-start">
-									<div class="fw-bold">Provide contact information</div>
-									<div class="">
-										<div class="text-secondary">#13 created in 2022-10-08</div>
-										<div class="" title="of the person that reported the bug. This will not always be possible, but in some cases it might be advantageous and most effective if a developer can have a chat with a person that actually experienced the bug, especially if the steps to reproduce a problem are not deterministic.">of the person that reported the bug. This will not alwa...</div>
-									</div>
-									<div class="">
-										<span class="btn-primary rounded ps-2 pe-2 fw-bold hightcls">High</span>
-										<span class="btn-muted rounded ps-2 pe-2 text-dark fw-bold">Bug</span>
-									</div>
-								</div>
-							</button>
+			
 						</div>
 					</div>
 				</div>
@@ -298,75 +89,79 @@
 	
 	<!-- TASK MODAL -->
 	<div class="modal fade" id="modal-task" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header heaader">
-					<h1 class="modal-title" id="modal-task">Add Task</h1>
-					<button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
+		<form name="modalForm">
+			<input type="hidden" name="id" value="">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header heaader" >
+						<h1 class="modal-title" id="modalTask" name="bigTitle">Add Task</h1>
+						<button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
 
-				<div class="modal-body boody">
-					<form>
-						<div class="mb-3">
-							<label for="title_Inpt" class="fw-bold">Title: </label>
-							<input type="text" id="title_Inpt" class="form-control">
-						</div>
-						
-						<div class="mb-3">
-							<h6>Type: </h6>
+					<div class="modal-body boody">
+							<div class="mb-3">
+								<label for="title_Inpt" class="fw-bold">Title: </label>
+								<input name="title" type="text" id="title_Inpt" class="form-control" required>
+							</div>
 							
-							<input class="feature fs-10px ms-2" type="radio" name="choice" id="radio1" value="feature" checked>
-							<label>
-								Feature
-							</label>
-							<br>
-							<input class="bug fs-10px ms-2" type="radio" name="choice" id="radio1" value="bug">
-							<label>
-								Bug
-							</label>
-						</div>
-						
-						<div class="mb-3">
-							<label for="prio_Inpt" class="fw-bold">Priority:</label>
-							<select id="prio_Inpt" class="form-select">
-								<option selected>Please select</option>
-								<option>High</option>
-								<option>Med</option>
-								<option>Low</option>
-							</select>
-						</div>
+							<div class="mb-3">
+								<h6>Type: </h6>
+								
+								<input class="feature fs-10px ms-2 radio1" type="radio" id="feature" name="type" value="Feature" checked>
+								<label>
+									Feature
+								</label>
+								<br>
+								<input class="bug fs-10px ms-2 radio1" type="radio"  id="bug" name="type" value="Bug">
+								<label>
+									Bug
+								</label>
+							</div>
+							
+							<div class="mb-3">
+								<label for="prio_Inpt" class="fw-bold">Priority:</label>
+								<select id="prio_Inpt" class="form-select" name="priority">
+									<option selected>Please select</option>
+									<option>critical</option>
+									<option>High</option>
+									<option>Medium</option>
+									<option>Low</option>
+								</select>
+							</div>
 
-						<div class="mb-3">
-							<label for="stat_Inpt" class="fw-bold">Status:</label>
-							<select id="stat_Inpt" class="form-select">
-								<option selected>Please select</option>
-								<option>one</option>
-								<option>two</option>
-								<option>three</option>
-							</select>
-						</div>
+							<div class="mb-3">
+								<label for="stat_Inpt" class="fw-bold">Status:</label>
+								<select id="stat_Inpt" class="form-select" name="status">
+									<option selected value="Default">Please select</option>
+									<option value="To Do">To Do</option>
+									<option value = "In Progress">In progress</option>
+									<option value = "Done">Done</option>
+								</select>
+							</div>
 
-						<div class="mb-3">
-							<label for="date_Inpt" class="fw-bold">Date:</label>
-							<input type="date" id="date_Inpt" class="form-control">
-						</div>
+							<div class="mb-3">
+								<label for="date_Inpt" class="fw-bold">Date:</label>
+								<input type="date" id="date_Inpt" class="form-control" name="date">
+							</div>
 
-						<div>
-							<label for="descrip_Inpt" class="fw-bold">Description:</label>
-							<textarea id="descrip_Inpt" class="form-control" rows="4"></textarea>
-						</div>
-					</form>
+							<div>
+								<label for="descrip_Inpt" class="fw-bold">Description:</label>
+								<textarea id="descrip_Inpt" class="form-control" rows="4" name="description"></textarea>
+							</div>
+					</div>
+
+					<div class="modal-footer foooter" id = "modalFooter">
+						<button type="button" class="btn btn2" data-bs-dismiss="modal">Close</button>
+						<button type="submit" class="btn bg-white" onclick="ajouter2()" id="save" data-bs-dismiss="modal" name="saveChanges">Save changes!</button>
+					</div>
 				</div>
-
-				<div class="modal-footer foooter">
-					<button type="button" class="btn btn2" data-bs-dismiss="modal">Close</button>
-					<button type="button" class="btn bg-white">Save changes!</button>
-				</div>
-			</div>
-		</div>	
+			</div>	
+		</form>	
 	</div>
 	
 	<!-- ================== BEGIN core-js ================== -->
+	<script src="assets/js/data.js"></script>
+	<script src="assets/js/app.js"></script>
 	<script src="assets/js/vendor.min.js"></script>
 	<script src="assets/js/app.min.js"></script>
 	<!-- ================== END core-js ================== -->
