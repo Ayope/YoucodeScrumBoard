@@ -6,6 +6,7 @@ var typeFeature = document.querySelector("#feature");
 var typeBug = document.querySelector("#bug");
 
 var addTaskbtn = document.querySelector("#AddTaskBtn");
+
 var form = document.forms['modalForm'];
 
 
@@ -42,7 +43,7 @@ function afficher(){ //Read
                         <span class="btn-primary rounded ps-2 pe-2 fw-bold hightcls">${tasks[i].type}</span>
                         <span class="btn-muted rounded ps-2 pe-2 text-dark fw-bold">${tasks[i].priority}</span>
                         <span class="delete" onclick='deletElement(${tasks[i].id})'><i class="bi bi-trash3-fill text-red"></i></span>
-                        <span class="pen" onclick= 'editElement(${tasks[i].id})' data-bs-toggle="modal" data-bs-target="#modal-task"><i class="bi bi-pencil-fill"></i></span>
+                        <span class="pen" onclick= 'editFormAffiche(${tasks[i].id})' data-bs-toggle="modal" data-bs-target="#modal-task"><i class="bi bi-pencil-fill"></i></span>
                     </div>
                 </div>
             </button> `
@@ -64,7 +65,7 @@ function afficher(){ //Read
                     <span class="btn-primary rounded ps-2 pe-2 fw-bold hightcls">${tasks[i].type}</span>
                     <span class="btn-muted rounded ps-2 pe-2 text-dark fw-bold">${tasks[i].priority}</span>
                     <span class="delete" onclick='deletElement(${tasks[i].id})'><i class="bi bi-trash3-fill text-red"></i></span>
-                    <span class="pen" onclick= 'editElement(${tasks[i].id})' data-bs-toggle="modal" data-bs-target="#modal-task"><i class="bi bi-pencil-fill"></i></span>
+                    <span class="pen" onclick= 'editFormAffiche(${tasks[i].id})' data-bs-toggle="modal" data-bs-target="#modal-task"><i class="bi bi-pencil-fill"></i></span>
                 </div>
             </div>
             </button>`
@@ -85,7 +86,7 @@ function afficher(){ //Read
                     <span class="btn-primary rounded ps-2 pe-2 fw-bold hightcls">${tasks[i].type}</span>
                     <span class="btn-muted rounded ps-2 pe-2 text-dark fw-bold">${tasks[i].priority}</span>
                     <span class="delete" onclick='deletElement(${tasks[i].id})'><i class="bi bi-trash3-fill text-red"></i></span>
-                    <span class="pen" onclick= 'editElement(${tasks[i].id})' data-bs-toggle="modal" data-bs-target="#modal-task"><i class="bi bi-pencil-fill"></i></span>
+                    <span class="pen" onclick= 'editFormAffiche(${tasks[i].id})' data-bs-toggle="modal" data-bs-target="#modal-task"><i class="bi bi-pencil-fill"></i></span>
                 </div>
             </div>
             
@@ -93,17 +94,13 @@ function afficher(){ //Read
         }
     }
 
-    document.getElementById("to-do-tasks-count").innerHTML = countToDo;
-    document.getElementById("in-progress-tasks-count").innerHTML = countInProg;
-    document.getElementById("done-tasks-count").innerHTML = countDone;
+    document.getElementById("to-do-tasks-count").innerText = countToDo;
+    document.getElementById("in-progress-tasks-count").innerText = countInProg;
+    document.getElementById("done-tasks-count").innerText = countDone;
     
 }
 
-
-
-
 function ajouter2(){ //Create
-    var form = document.forms['modalForm'];
 
     if(form.title.value == "" || form.status.value == "Default"){
         alert("No Enough Inputs\nFill Status or Title");
@@ -111,7 +108,7 @@ function ajouter2(){ //Create
     }
     
     let tmpObj = {
-        id: tasks.length+1,
+        id: tasks[tasks.length - 1].id + 1 ,
         title : form.title.value,
         type : form.type.value,
         priority : form.priority.value,
@@ -126,32 +123,31 @@ function ajouter2(){ //Create
     afficher();
 }
 
-addTaskbtn.addEventListener('click', ()=>{
+addTaskbtn.addEventListener('click', ()=>{ //Change appearence of form when click "Add Task"
     form.reset();
     document.getElementById("modalTask").innerHTML = "Add Task";
     document.getElementById("modalFooter").innerHTML= `<button type="button" class="btn btn2" data-bs-dismiss="modal">Close</button>
     <button type="button" class="btn bg-white" onclick="ajouter2()" id="save" data-bs-dismiss="modal" name="saveChanges">Save changes!</button>`;
 })
 
-
-function deletElement(id){
+function searchById(id){
     for(let i = 0; i < tasks.length; i++){
         if (tasks[i].id == id) {
-            tasks.splice(i,1);
+            return i; 
         }
     }
+}
+
+function deletElement(id){ //Delete
+    let index = searchById(id);
+    tasks.splice(index,1);
+
     afficher();
 }
 
-function editElement(id){
-    var form = document.forms["modalForm"];
+function editFormAffiche(id){ //Update
     
-    for(let i = 0; i<tasks.length; i++){
-        if(tasks[i].id == id){
-            var index = i;
-            break;
-        }
-    }
+    let index = searchById(id);
 
     form.id.value = tasks[index].id;
     form.title.value = tasks[index].title;
@@ -172,12 +168,11 @@ function editElement(id){
     var footer = document.getElementById("modalFooter");
     footer.innerHTML=`
     <button type="button" class="btn btn2" data-bs-dismiss="modal">Close</button>
-    <button type="button" class="btn bg-white" onclick="replace(${index})" id="save"
+    <button type="button" class="btn bg-white" onclick="update(${index})" id="save"
     data-bs-dismiss="modal" name="saveChanges">Update!</button>`;
 }
 
-function replace(index){
-    var form = document.forms["modalForm"];
+function update(index){ //Update
     if(form.title.value == "" || form.status.value == "Default"){
         alert("No Enough Inputs\nFill Status or Title");
         return 0;
@@ -190,7 +185,7 @@ function replace(index){
         priority : form.priority.value,
         status : form.status.value,
         date : form.date.value,
-        description : form.description.value
+        description : form.description.value,
     };
 
     tasks[index] = modifInpt; 
