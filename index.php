@@ -1,3 +1,12 @@
+<?php 
+	include 'database.php';
+	require 'scripts.php';
+?>
+
+<?php
+	//var_dump($data);
+?>
+
 <!DOCTYPE html>
 <html lang="en" >
 <head>
@@ -43,11 +52,30 @@
 				<div class="col-sm mb-10px">
 					<div class="">
 						<div class="border rounded-top banner">
-							<h4 id="justForTest" class="text-white text-center pt-2 w-100">To do (<span id="to-do-tasks-count">0</span>)</h4>
+							<h4 class="text-white text-center pt-2 w-100">To do (<span id="to-do-tasks-count">0</span>)</h4>
 						</div>
 						<div class="" id="to-do-tasks">
 							<!-- TO DO TASKS HERE -->
-							
+							<?php $data = mysqli_fetch_assoc($results)?> 
+								<button data-id= <?php $data['id']?> class="w-100 border-0 border-bottom border-1 border-dark d-flex pb-5px btn11">
+									<div class="text-start pt-1">
+										<i class="bi bi-question-circle fs-17px text-success"></i> 
+									</div>
+									<div class="ps-3 text-start">
+										<div class="fw-bold"><?php $data['title']?></div>
+										<div class="">
+											<div class="text-secondary">#<?php $data['id']?> created in <?php $data['task_datetime']?></div>
+											<div class="description" title=<?php $data['description']?>><?php $data['description']?></div>
+										</div>
+										<div class="">
+											<span class="btn-primary rounded ps-2 pe-2 fw-bold hightcls"><?php $data['priority']?></span>
+											<span class="btn-muted rounded ps-2 pe-2 text-dark fw-bold"><?php $data['type']?></span>
+											<span class="delete"><i class="bi bi-trash3-fill text-red"></i></span>
+											<span class="pen" data-bs-toggle="modal" data-bs-target="#modal-task"><i class="bi bi-pencil-fill"></i></span>
+										</div>
+									</div>
+        						</button>
+							<?php //endwhile;?>
 						</div>
 					</div>
 				</div>
@@ -89,7 +117,7 @@
 	
 	<!-- TASK MODAL -->
 	<div class="modal fade" id="modal-task" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
-		<form name="modalForm">
+		<form name="modalForm" action= "scripts.php" method="POST">
 			<input type="hidden" name="id" value="">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -107,12 +135,12 @@
 							<div class="mb-3">
 								<h6>Type: </h6>
 								
-								<input class="feature fs-10px ms-2 radio1" type="radio" id="feature" name="type" value="Feature" checked>
+								<input class="feature fs-10px ms-2 radio1" type="radio" id="feature" name="type" value="2" checked>
 								<label>
 									Feature
 								</label>
 								<br>
-								<input class="bug fs-10px ms-2 radio1" type="radio"  id="bug" name="type" value="Bug">
+								<input class="bug fs-10px ms-2 radio1" type="radio"  id="bug" name="type" value="1">
 								<label>
 									Bug
 								</label>
@@ -122,10 +150,10 @@
 								<label for="prio_Inpt" class="fw-bold">Priority:</label>
 								<select id="prio_Inpt" class="form-select" name="priority">
 									<option selected>Please select</option>
-									<option>critical</option>
-									<option>High</option>
-									<option>Medium</option>
-									<option>Low</option>
+									<option value = "4">critical</option>
+									<option value = "3">High</option>
+									<option value = "2">Medium</option>
+									<option value = "1">Low</option>
 								</select>
 							</div>
 
@@ -133,9 +161,9 @@
 								<label for="stat_Inpt" class="fw-bold">Status:</label>
 								<select id="stat_Inpt" class="form-select" name="status">
 									<option selected value="Default">Please select</option>
-									<option value="To Do">To Do</option>
-									<option value = "In Progress">In progress</option>
-									<option value = "Done">Done</option>
+									<option value = "1">To Do</option>
+									<option value = "2">In progress</option>
+									<option value = "3">Done</option>
 								</select>
 							</div>
 
@@ -152,7 +180,7 @@
 
 					<div class="modal-footer foooter" id = "modalFooter">
 						<button type="button" class="btn btn2" data-bs-dismiss="modal">Close</button>
-						<button type="submit" class="btn bg-white" onclick="ajouter2()" id="save" data-bs-dismiss="modal" name="saveChanges">Save changes!</button>
+						<button type="submit" class="btn bg-white" id="save" data-bs-dismiss="modal" name="saveChanges">Save changes!</button>
 					</div>
 				</div>
 			</div>	
@@ -160,8 +188,8 @@
 	</div>
 	
 	<!-- ================== BEGIN core-js ================== -->
-	<script src="assets/js/data.js"></script>
-	<script src="assets/js/app.js"></script>
+	<!-- <script src="assets/js/data.js"></script> -->
+	<!-- <script src="assets/js/app.js"></script> -->
 	<script src="assets/js/vendor.min.js"></script>
 	<script src="assets/js/app.min.js"></script>
 	<!-- ================== END core-js ================== -->
