@@ -4,8 +4,14 @@
 ?>
 
 <?php
-	//var_dump($data);
+	// $getData = GetTasks($conn);
+	// $data = mysqli_fetch_all($getData);
+
+	// var_dump($data);
+
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en" >
@@ -47,35 +53,46 @@
 					<button class="btn btn0" data-bs-toggle="modal" id="AddTaskBtn" data-bs-target="#modal-task"><i class="bi bi-plus"></i> Add Task</button>
 				</div>
 			</div>
-			
+			<?php 	
+				$CToDo = 0;
+				$CInPrg = 0;
+				$CDone = 0; 
+			?>
 			<div class="row"> <!--Row-->
 				<div class="col-sm mb-10px">
 					<div class="">
 						<div class="border rounded-top banner">
-							<h4 class="text-white text-center pt-2 w-100">To do (<span id="to-do-tasks-count">0</span>)</h4>
+							<h4 class="text-white text-center pt-2 w-100">To do (<span id="to-do-tasks-count"></span>)</h4>
 						</div>
 						<div class="" id="to-do-tasks">
 							<!-- TO DO TASKS HERE -->
-							<?php $data = mysqli_fetch_assoc($results)?> 
-								<button data-id= <?php $data['id']?> class="w-100 border-0 border-bottom border-1 border-dark d-flex pb-5px btn11">
+							<?php $getData = GetTasks($conn);?>
+							<?php while($row = mysqli_fetch_assoc($getData)): ;?>
+								<?php if($row['status_id'] == 1): ?>
+									<button id = "" class="w-100 border-0 border-bottom border-1 border-dark d-flex pb-5px btn11">
 									<div class="text-start pt-1">
 										<i class="bi bi-question-circle fs-17px text-success"></i> 
 									</div>
 									<div class="ps-3 text-start">
-										<div class="fw-bold"><?php $data['title']?></div>
-										<div class="">
-											<div class="text-secondary">#<?php $data['id']?> created in <?php $data['task_datetime']?></div>
-											<div class="description" title=<?php $data['description']?>><?php $data['description']?></div>
-										</div>
-										<div class="">
-											<span class="btn-primary rounded ps-2 pe-2 fw-bold hightcls"><?php $data['priority']?></span>
-											<span class="btn-muted rounded ps-2 pe-2 text-dark fw-bold"><?php $data['type']?></span>
-											<span class="delete"><i class="bi bi-trash3-fill text-red"></i></span>
-											<span class="pen" data-bs-toggle="modal" data-bs-target="#modal-task"><i class="bi bi-pencil-fill"></i></span>
-										</div>
+									<div class="fw-bold"><?= $row["title"] ?></div>
+									<div class="">
+										<div class="text-secondary">#<?php echo $row['id'] . " created on " . $row['task_datetime']; ?></div>
+										<div class="description" title="<?= $row['description']; ?>"><?= $row['description']; ?></div>
 									</div>
-        						</button>
-							<?php //endwhile;?>
+									<div class="">
+										<span class="btn-primary rounded ps-2 pe-2 fw-bold hightcls"><?= $row['priority']; ?></span>
+										<span class="btn-muted rounded ps-2 pe-2 text-dark fw-bold"><?= $row['type']; ?></span>
+										<span class="delete" onclick='deletElement(${tasks[i].id})'><i class="bi bi-trash3-fill text-red"></i></span>
+										<span class="pen" onclick= 'editFormAffiche(${tasks[i].id})' data-bs-toggle="modal" data-bs-target="#modal-task"><i class="bi bi-pencil-fill"></i></span>
+									</div>
+									</div>
+									</button>
+									<?php $CToDo++; ?>
+								<?php endif; ?>
+							<?php endwhile;?>
+							<?php
+								echo "<script>document.getElementById('to-do-tasks-count').innerText= ". $CToDo ." ;</script>";
+							?>
 						</div>
 					</div>
 				</div>
@@ -88,7 +105,27 @@
 						</div>
 						<div class="" id="in-progress-tasks">
 							<!-- IN PROGRESS TASKS HERE -->
-							
+							<?php $getData = GetTasks($conn);?>
+							<?php while($row = mysqli_fetch_assoc($getData)): ;?>
+								<?php if($row['status_id'] == 2): ?>
+									<button data-id= "" class="w-100 border-0 border-bottom border-1 border-dark d-flex pb-5px btn11">
+									<div class="text-start pt-1">
+										<i class="spinner-border spinner-border-sm p-2 mt-1 text-success "></i> 
+									</div>
+									<div class="ps-3 text-start">
+									<div class="fw-bold"><?= $row["title"] ?></div>
+									<div class="">
+										<div class="text-secondary">#<?php echo $row['id'] . " created on " . $row['task_datetime']; ?></div>
+										<div class="description" title="<?= $row['description']; ?>"><?= $row['description']; ?></div>
+									</div>
+									<div class="">
+										<span class="btn-primary rounded ps-2 pe-2 fw-bold hightcls"><?= $row['priority']; ?></span>
+										<span class="btn-muted rounded ps-2 pe-2 text-dark fw-bold"><?= $row['type']; ?></span>
+									</div>
+									</div>
+									</button>
+								<?php endif; ?>
+							<?php endwhile;?>
 						</div>
 					</div>
 				</div>
@@ -101,7 +138,27 @@
 						</div>
 						<div class=" " id="done-tasks">
 							<!-- DONE TASKS HERE -->
-			
+							<?php $getData = GetTasks($conn);?>
+							<?php while($row = mysqli_fetch_assoc($getData)): ;?>
+								<?php if($row['status_id'] == 3): ?>
+									<button data-id= "" class="w-100 border-0 border-bottom border-1 border-dark d-flex pb-5px btn11">
+									<div class="text-start pt-1">
+										<i class="bi bi-check-circle fs-17px text-success"></i> 
+									</div>
+									<div class="ps-3 text-start">
+									<div class="fw-bold"><?= $row["title"] ?></div>
+									<div class="">
+										<div class="text-secondary">#<?php echo $row['id'] . " created on " . $row['task_datetime']; ?></div>
+										<div class="description" title="<?= $row['description']; ?>"><?= $row['description']; ?></div>
+									</div>
+									<div class="">
+										<span class="btn-primary rounded ps-2 pe-2 fw-bold hightcls"><?= $row['priority']; ?></span>
+										<span class="btn-muted rounded ps-2 pe-2 text-dark fw-bold"><?= $row['type']; ?></span>
+									</div>
+									</div>
+									</button>
+								<?php endif; ?>
+							<?php endwhile;?>
 						</div>
 					</div>
 				</div>
