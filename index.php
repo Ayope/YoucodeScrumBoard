@@ -69,21 +69,23 @@
 							<?php $getData = GetTasks($conn);?>
 							<?php while($row = mysqli_fetch_assoc($getData)): ;?>
 								<?php if($row['status_id'] == 1): ?>
-									<button id = "" class="w-100 border-0 border-bottom border-1 border-dark d-flex pb-5px btn11">
+									<button id = "<?= $row['id']?>" class="w-100 border-0 border-bottom border-1 border-dark d-flex pb-5px btn11">
+									<input type="hidden" id=<?php echo $row['id']."s";?> value= "<?php echo $row['status_id']; ?>">
 									<div class="text-start pt-1">
 										<i class="bi bi-question-circle fs-17px text-success"></i> 
 									</div>
 									<div class="ps-3 text-start">
-									<div class="fw-bold"><?= $row["title"] ?></div>
+									<div class="fw-bold" id=<?php echo $row['id']."t";?>  value ="<?php echo $row["title"]; ?>" > <?= $row["title"] ?></div>
 									<div class="">
-										<div class="text-secondary">#<?php echo $row['id'] . " created on " . $row['task_datetime']; ?></div>
-										<div class="description" title="<?= $row['description']; ?>"><?= $row['description']; ?></div>
+										<div class="text-secondary" id=<?php echo $row['id']."dt";?> value= "<?php echo $row['task_datetime']; ?>" >#<?php echo $row['id'] . " created on " . $row['task_datetime']; ?></div>
+										<div class="description" title="<?= $row['description']; ?>" id=<?php echo $row['id']."dscrp";?> value= "<?php echo $row['description']; ?>" ><?= $row['description']; ?></div>
 									</div>
 									<div class="">
-										<span class="btn-primary rounded ps-2 pe-2 fw-bold hightcls"><?= $row['priority']; ?></span>
-										<span class="btn-muted rounded ps-2 pe-2 text-dark fw-bold"><?= $row['type']; ?></span>
-										<span class="delete" onclick='deletElement(${tasks[i].id})'><i class="bi bi-trash3-fill text-red"></i></span>
-										<span class="pen" onclick= 'editFormAffiche(${tasks[i].id})' data-bs-toggle="modal" data-bs-target="#modal-task"><i class="bi bi-pencil-fill"></i></span>
+										<span class="btn-primary rounded ps-2 pe-2 fw-bold hightcls" id=<?php echo $row['id']."p";?> value= "<?php echo $row['priority_id']; ?>" ><?= $row['priority']; ?></span>
+										<span class="btn-muted rounded ps-2 pe-2 text-dark fw-bold" id=<?php echo $row['id']."ty";?> value= "<?php echo $row['types_id']; ?>"><?= $row['type']; ?></span>
+										<a class="delete"  href="index.php?id=<?=$row['id']?>"><i class="bi bi-trash3-fill text-red"></i></a>
+										<span class="pen" onclick= 'editFormAffiche(<?= $row["id"]?>)' data-bs-toggle="modal" data-bs-target="#modal-task"><i class="bi bi-pencil-fill"></i></span>
+
 									</div>
 									</div>
 									</button>
@@ -108,24 +110,31 @@
 							<?php $getData = GetTasks($conn);?>
 							<?php while($row = mysqli_fetch_assoc($getData)): ;?>
 								<?php if($row['status_id'] == 2): ?>
-									<button data-id= "" class="w-100 border-0 border-bottom border-1 border-dark d-flex pb-5px btn11">
+									<button id = "<?= $row['id']?>" class="w-100 border-0 border-bottom border-1 border-dark d-flex pb-5px btn11">
+									<input type="hidden" id=<?php echo $row['id']."s";?> value= "<?php echo $row['status_id']; ?>">
 									<div class="text-start pt-1">
-										<i class="spinner-border spinner-border-sm p-2 mt-1 text-success "></i> 
+										<i class="bi bi-question-circle fs-17px text-success"></i> 
 									</div>
 									<div class="ps-3 text-start">
-									<div class="fw-bold"><?= $row["title"] ?></div>
+									<div class="fw-bold" id=<?php echo $row['id']."t";?>  value ="<?php echo $row["title"]; ?>" > <?= $row["title"] ?></div>
 									<div class="">
-										<div class="text-secondary">#<?php echo $row['id'] . " created on " . $row['task_datetime']; ?></div>
-										<div class="description" title="<?= $row['description']; ?>"><?= $row['description']; ?></div>
+										<div class="text-secondary" id=<?php echo $row['id']."dt";?> value= "<?php echo $row['task_datetime']; ?>" >#<?php echo $row['id'] . " created on " . $row['task_datetime']; ?></div>
+										<div class="description" title="<?= $row['description']; ?>" id=<?php echo $row['id']."dscrp";?> value= "<?php echo $row['description']; ?>" ><?= $row['description']; ?></div>
 									</div>
 									<div class="">
-										<span class="btn-primary rounded ps-2 pe-2 fw-bold hightcls"><?= $row['priority']; ?></span>
-										<span class="btn-muted rounded ps-2 pe-2 text-dark fw-bold"><?= $row['type']; ?></span>
+										<span class="btn-primary rounded ps-2 pe-2 fw-bold hightcls" id=<?php echo $row['id']."p";?> value= "<?php echo $row['priority_id']; ?>" ><?= $row['priority']; ?></span>
+										<span class="btn-muted rounded ps-2 pe-2 text-dark fw-bold" id=<?php echo $row['id']."ty";?> value= "<?php echo $row['types_id']; ?>"><?= $row['type']; ?></span>
+										<a class="delete"  href="index.php?id=<?=$row['id']?>"><i class="bi bi-trash3-fill text-red"></i></a>
+										<span class="pen" onclick= 'editFormAffiche(<?= $row["id"]?>)' data-bs-toggle="modal" data-bs-target="#modal-task"><i class="bi bi-pencil-fill"></i></span>
 									</div>
 									</div>
 									</button>
+									<?php $CInPrg++; ?>
 								<?php endif; ?>
 							<?php endwhile;?>
+							<?php
+								echo "<script>document.getElementById('in-progress-tasks-count').innerText= ". $CInPrg ." ;</script>";
+							?>
 						</div>
 					</div>
 				</div>
@@ -141,24 +150,31 @@
 							<?php $getData = GetTasks($conn);?>
 							<?php while($row = mysqli_fetch_assoc($getData)): ;?>
 								<?php if($row['status_id'] == 3): ?>
-									<button data-id= "" class="w-100 border-0 border-bottom border-1 border-dark d-flex pb-5px btn11">
+									<button id = "<?= $row['id']?>" class="w-100 border-0 border-bottom border-1 border-dark d-flex pb-5px btn11">
+									<input type="hidden" id=<?php echo $row['id']."s";?> value= "<?php echo $row['status_id']; ?>">
 									<div class="text-start pt-1">
-										<i class="bi bi-check-circle fs-17px text-success"></i> 
+										<i class="bi bi-question-circle fs-17px text-success"></i> 
 									</div>
 									<div class="ps-3 text-start">
-									<div class="fw-bold"><?= $row["title"] ?></div>
+									<div class="fw-bold" id=<?php echo $row['id']."t";?>  value ="<?php echo $row["title"]; ?>" > <?= $row["title"] ?></div>
 									<div class="">
-										<div class="text-secondary">#<?php echo $row['id'] . " created on " . $row['task_datetime']; ?></div>
-										<div class="description" title="<?= $row['description']; ?>"><?= $row['description']; ?></div>
+										<div class="text-secondary" id=<?php echo $row['id']."dt";?> value= "<?php echo $row['task_datetime']; ?>" >#<?php echo $row['id'] . " created on " . $row['task_datetime']; ?></div>
+										<div class="description" title="<?= $row['description']; ?>" id=<?php echo $row['id']."dscrp";?> value= "<?php echo $row['description']; ?>" ><?= $row['description']; ?></div>
 									</div>
 									<div class="">
-										<span class="btn-primary rounded ps-2 pe-2 fw-bold hightcls"><?= $row['priority']; ?></span>
-										<span class="btn-muted rounded ps-2 pe-2 text-dark fw-bold"><?= $row['type']; ?></span>
+										<span class="btn-primary rounded ps-2 pe-2 fw-bold hightcls" id=<?php echo $row['id']."p";?> value= "<?php echo $row['priority_id']; ?>" ><?= $row['priority']; ?></span>
+										<span class="btn-muted rounded ps-2 pe-2 text-dark fw-bold" id=<?php echo $row['id']."ty";?> value= "<?php echo $row['types_id']; ?>"><?= $row['type']; ?></span>
+										<a class="delete" href="index.php?id=<?=$row['id']?>" ><i class="bi bi-trash3-fill text-red"></i></a>
+										<span class="pen" onclick= 'editFormAffiche(<?= $row["id"]?>)' data-bs-toggle="modal" data-bs-target="#modal-task"><i class="bi bi-pencil-fill"></i></span>
 									</div>
 									</div>
 									</button>
+									<?php $CDone++; ?>
 								<?php endif; ?>
 							<?php endwhile;?>
+							<?php
+								echo "<script>document.getElementById('done-tasks-count').innerText= ". $CDone ." ;</script>";
+							?>
 						</div>
 					</div>
 				</div>
@@ -205,8 +221,8 @@
 							
 							<div class="mb-3">
 								<label for="prio_Inpt" class="fw-bold">Priority:</label>
-								<select id="prio_Inpt" class="form-select" name="priority">
-									<option selected>Please select</option>
+								<select id="prio_Inpt" class="form-select" name="priority" required>
+									<option value="">Please select</option>
 									<option value = "4">critical</option>
 									<option value = "3">High</option>
 									<option value = "2">Medium</option>
@@ -216,8 +232,8 @@
 
 							<div class="mb-3">
 								<label for="stat_Inpt" class="fw-bold">Status:</label>
-								<select id="stat_Inpt" class="form-select" name="status">
-									<option selected value="Default">Please select</option>
+								<select id="stat_Inpt" class="form-select" name="status" required>
+									<option svalue="">Please select</option>
 									<option value = "1">To Do</option>
 									<option value = "2">In progress</option>
 									<option value = "3">Done</option>
@@ -231,13 +247,13 @@
 
 							<div>
 								<label for="descrip_Inpt" class="fw-bold">Description:</label>
-								<textarea id="descrip_Inpt" class="form-control" rows="4" name="description"></textarea>
+								<textarea id="descrip_Inpt" class="form-control" rows="4" name="description" required></textarea>
 							</div>
 					</div>
 
 					<div class="modal-footer foooter" id = "modalFooter">
 						<button type="button" class="btn btn2" data-bs-dismiss="modal">Close</button>
-						<button type="submit" class="btn bg-white" id="save" data-bs-dismiss="modal" name="saveChanges">Save changes!</button>
+						<button type="submit" class="btn bg-white" id="save" name="saveChanges">Save changes!</button>
 					</div>
 				</div>
 			</div>	
@@ -246,7 +262,7 @@
 	
 	<!-- ================== BEGIN core-js ================== -->
 	<!-- <script src="assets/js/data.js"></script> -->
-	<!-- <script src="assets/js/app.js"></script> -->
+	<script src="assets/js/app.js"></script>
 	<script src="assets/js/vendor.min.js"></script>
 	<script src="assets/js/app.min.js"></script>
 	<!-- ================== END core-js ================== -->

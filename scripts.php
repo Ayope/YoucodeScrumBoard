@@ -6,11 +6,9 @@
     //session_start();
 
     //ROUTING
-    if(isset($_POST['saveChanges'])){
-        SaveTasks($conn); //In the database
-    }    
-    // if(isset($_POST['update']))      updateTask();
-    // if(isset($_POST['delete']))      deleteTask();
+    if(isset($_POST['saveChanges'])) SaveTasks($conn); //In the database    
+    if(isset($_POST['update']))      updateTask($conn); 
+    if(isset($_GET['id']))      deleteTask($conn);
     
 
     function SaveTasks($conn)
@@ -28,22 +26,6 @@
 
         $results = mysqli_query($conn, $sql);
 
-        // $sql = "INSERT INTO tasks(title, types_id, priority_id, status_id, task_datetime, description)
-        // VALUES ('$title','$type','$priority','$status','$date','$description');";
-
-        // if(empty($title) || empty($type) || empty($priority) || empty($status) || empty($date) || empty($description) ){
-        //     echo "Fill the blanks inputs"; //check the inputs
-        // } else{
-        //     $results = mysqli_query($conn, $sql);
-        //     if($results){
-        //         echo "data inserted";
-        //     } else {
-        //         echo "data not inserted";
-        //     }
-        // }
-
-        // showTask();
-
         //$_SESSION['message'] = "Task has been added successfully !";
 		header('location: index.php');
     }
@@ -59,20 +41,45 @@
 
         return $results;
     }
-    //GetTasks($conn);
 
-    function updateTask()
+    function updateTask($conn)
     {
-        //CODE HERE
-        //SQL UPDATE
+        $TaskId = $_POST['id'];
+
+        $title = $_POST['title'];
+        $type = $_POST['type']; // return the value
+        $priority = $_POST['priority'];
+        $status = $_POST['status'];
+        $date = $_POST['date'];
+        $description = $_POST['description'];
+
+        $sql = "UPDATE `tasks` SET `title`='$title', `types_id`='$type', `priority_id`='$priority', `status_id`='$status', `task_datetime`='$date', `description`='$description' 
+        WHERE `id` = '$TaskId'";
+
+        $results = mysqli_query($conn, $sql);
+
+        if($results){
+            echo "updated";
+        }else {
+            die("Error updating record: " . mysqli_error($conn));
+        }
+
         //$_SESSION['message'] = "Task has been updated successfully !";
 		header('location: index.php');
     }
 
-    function deleteTask()
+    function deleteTask($conn)
     {
-        //CODE HERE
-        //SQL DELETE
+        
+        $sql = "DELETE FROM `tasks` WHERE id = $_GET[id]";
+        $results = mysqli_query($conn, $sql);
+        
+        if($results){
+            echo "updated";
+        }else {
+            die("Error updating record: " . mysqli_error($conn));
+        }
+        
         //$_SESSION['message'] = "Task has been deleted successfully !";
 		header('location: index.php');
     }

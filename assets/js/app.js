@@ -2,12 +2,12 @@
 // var InProgress = document.getElementById("in-progress-tasks");
 // var Done = document.getElementById("done-tasks");
 
-// var typeFeature = document.querySelector("#feature");
-// var typeBug = document.querySelector("#bug");
+var typeFeature = document.querySelector("#feature");
+var typeBug = document.querySelector("#bug");
 
-// var addTaskbtn = document.querySelector("#AddTaskBtn");
+var addTaskbtn = document.querySelector("#AddTaskBtn");
 
-// var form = document.forms['modalForm'];
+var form = document.forms['modalForm'];
 
 // afficher();
 
@@ -85,12 +85,12 @@
 //     afficher();
 // }
 
-// addTaskbtn.addEventListener('click', ()=>{ //Change appearence of form when click "Add Task"
-//     form.reset();
-//     document.getElementById("modalTask").innerHTML = "Add Task";
-//     document.getElementById("modalFooter").innerHTML= `<button type="button" class="btn btn2" data-bs-dismiss="modal">Close</button>
-//     <button type="button" class="btn bg-white" onclick="ajouter()" id="save" data-bs-dismiss="modal" name="saveChanges">Save changes!</button>`;
-// })
+addTaskbtn.addEventListener('click', ()=>{ //Change appearence of form when click "Add Task"
+    form.reset();
+    document.getElementById("modalTask").innerHTML = "Add Task";
+    document.getElementById("modalFooter").innerHTML= `<button type="button" class="btn btn2" data-bs-dismiss="modal">Close</button>
+    <button type="submit" class="btn bg-white" id="save" name="saveChanges">Save changes!</button>`;
+})
 
 // function searchById(id){
 //     for(let i = 0; i < tasks.length; i++){
@@ -107,32 +107,33 @@
 //     afficher();
 // }
 
-// function editFormAffiche(id){ //Update
+function editFormAffiche(id){ //Update
     
-//     let index = searchById(id);
+    // let index = searchById(id);
 
-//     form.id.value = tasks[index].id;
-//     form.title.value = tasks[index].title;
-//     if (tasks[index].type == "Feature"){
-//         typeFeature.checked = true;
-//     }else if(tasks[index].type == "Bug"){
-//         typeBug.checked = true;
-//     }
-//     form.priority.value = tasks[index].priority;
-//     form.status.value = tasks[index].status;
-//     form.date.value = tasks[index].date;
-//     form.description.value = tasks[index].description;
+    form.id.value = id;
 
-//     document.getElementById("modalTask").innerHTML = "Modify Task";
+    form.title.value = document.getElementById(id+"t").getAttribute('value');
 
-//     document.getElementById("save").style.display = "none";
+    if (document.getElementById(id+"ty").getAttribute('value') ==   2){
+        typeFeature.checked = true;
+    }else if(document.getElementById(id+"ty").getAttribute('value') == 1){
+        typeBug.checked = true;
+    }
+
+    form.priority.value = document.getElementById(id+"p").getAttribute('value');
+    form.status.value = document.getElementById(id+"s").getAttribute('value');;
+    form.date.value = document.getElementById(id+"dt").getAttribute('value');
+    form.description.value = document.getElementById(id+"dscrp").getAttribute('value');
+
+    document.getElementById("modalTask").innerHTML = "Modify Task";
     
-//     var footer = document.getElementById("modalFooter");
-//     footer.innerHTML=`
-//     <button type="button" class="btn btn2" data-bs-dismiss="modal">Close</button>
-//     <button type="button" class="btn bg-white" onclick="update(${index})" id="save"
-//     data-bs-dismiss="modal" name="saveChanges">Update!</button>`;
-// }
+    var footer = document.getElementById("modalFooter");
+    footer.innerHTML=`
+    <button type="button" class="btn btn2" data-bs-dismiss="modal">Close</button>
+    <button type="submit" class="btn bg-white"
+    name="update">Update!</button>`;
+}
 
 // function update(index){ //Update
 //     if(form.title.value == "" || form.status.value == "Default"){
