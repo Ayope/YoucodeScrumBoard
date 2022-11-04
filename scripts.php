@@ -1,9 +1,6 @@
 <?php
-
     //INCLUDE DATABASE FILE
     include 'database.php';
-    //SESSSION IS A WAY TO STORE DATA TO BE USED ACROSS MULTIPLE PAGES
-    //session_start();
 
     //ROUTING
     if(isset($_POST['saveChanges'])) SaveTasks($conn); //In the database    
@@ -26,7 +23,6 @@
 
         $results = mysqli_query($conn, $sql);
 
-        //$_SESSION['message'] = "Task has been added successfully !";
 		header('location: index.php');
     }
 
@@ -58,13 +54,6 @@
 
         $results = mysqli_query($conn, $sql);
 
-        if($results){
-            echo "updated";
-        }else {
-            die("Error updating record: " . mysqli_error($conn));
-        }
-
-        //$_SESSION['message'] = "Task has been updated successfully !";
 		header('location: index.php');
     }
 
@@ -74,14 +63,7 @@
         $sql = "DELETE FROM `tasks` WHERE id = $_GET[id]";
         $results = mysqli_query($conn, $sql);
         
-        if($results){
-            echo "updated";
-        }else {
-            die("Error updating record: " . mysqli_error($conn));
-        }
-        
-        //$_SESSION['message'] = "Task has been deleted successfully !";
-		header('location: index.php');
+        header('location: index.php');
     }
 
 ?>

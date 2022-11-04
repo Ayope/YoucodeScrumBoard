@@ -3,16 +3,6 @@
 	require 'scripts.php';
 ?>
 
-<?php
-	// $getData = GetTasks($conn);
-	// $data = mysqli_fetch_all($getData);
-
-	// var_dump($data);
-
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="en" >
 <head>
@@ -69,26 +59,35 @@
 							<?php $getData = GetTasks($conn);?>
 							<?php while($row = mysqli_fetch_assoc($getData)): ;?>
 								<?php if($row['status_id'] == 1): ?>
-									<button id = "<?= $row['id']?>" class="w-100 border-0 border-bottom border-1 border-dark d-flex pb-5px btn11">
-									<input type="hidden" id=<?php echo $row['id']."s";?> value= "<?php echo $row['status_id']; ?>">
-									<div class="text-start pt-1">
-										<i class="bi bi-question-circle fs-17px text-success"></i> 
-									</div>
-									<div class="ps-3 text-start">
-									<div class="fw-bold" id=<?php echo $row['id']."t";?>  value ="<?php echo $row["title"]; ?>" > <?= $row["title"] ?></div>
-									<div class="">
-										<div class="text-secondary" id=<?php echo $row['id']."dt";?> value= "<?php echo $row['task_datetime']; ?>" >#<?php echo $row['id'] . " created on " . $row['task_datetime']; ?></div>
-										<div class="description" title="<?= $row['description']; ?>" id=<?php echo $row['id']."dscrp";?> value= "<?php echo $row['description']; ?>" ><?= $row['description']; ?></div>
-									</div>
-									<div class="">
-										<span class="btn-primary rounded ps-2 pe-2 fw-bold hightcls" id=<?php echo $row['id']."p";?> value= "<?php echo $row['priority_id']; ?>" ><?= $row['priority']; ?></span>
-										<span class="btn-muted rounded ps-2 pe-2 text-dark fw-bold" id=<?php echo $row['id']."ty";?> value= "<?php echo $row['types_id']; ?>"><?= $row['type']; ?></span>
-										<a class="delete"  href="index.php?id=<?=$row['id']?>"><i class="bi bi-trash3-fill text-red"></i></a>
-										<span class="pen" onclick= 'editFormAffiche(<?= $row["id"]?>)' data-bs-toggle="modal" data-bs-target="#modal-task"><i class="bi bi-pencil-fill"></i></span>
+									<button id = "<?= $row['id']?>" class="w-100 border-0 border-bottom border-1 border-dark d-flex pb-5px btn11 position-relative">
+										<input type="hidden" id=<?php echo $row['id']."s";?> value= "<?php echo $row['status_id']; ?>">
+											
+										<div class="text-start pt-3">
+											<i class="bi bi-question-circle fs-15px text-success"></i> 
+										</div>
 
-									</div>
-									</div>
+										<div class= "d-flex pt-2 pb-2">
+											<div class="eleDiv">
+												<div class="ps-3 text-start">
+													<div class="fw-bolder " id=<?php echo $row['id']."t";?>  value ="<?php echo $row["title"]; ?>" > <?= $row["title"] ?></div>
+													<div class="">
+														<div class="text-secondary" id=<?php echo $row['id']."dt";?> value= "<?php echo $row['task_datetime']; ?>" >#<?php echo $row['id'] . " created on " . $row['task_datetime']; ?></div>
+														<div class="description" title="<?= $row['description']; ?>" id=<?php echo $row['id']."dscrp";?> value= "<?php echo $row['description']; ?>" ><?= $row['description']; ?></div>
+													</div>
+													<div class="">
+														<span class="btn-primary rounded ps-2 pe-2 fw-bold hightcls" id=<?php echo $row['id']."p";?> value= "<?php echo $row['priority_id']; ?>" ><?= $row['priority']; ?></span>
+														<span class="btn-muted rounded ps-2 pe-2 text-dark fw-bold" id=<?php echo $row['id']."ty";?> value= "<?php echo $row['types_id']; ?>"><?= $row['type']; ?></span>
+													</div>
+												</div>
+											</div>
+
+											<div class="position-absolute" style = "right:3%">	
+												<a class="delete d-block fs-20px"  href="index.php?id=<?=$row['id']?>"><i class="bi bi-trash3-fill text-red"></i></a>
+												<span class="pen fs-18px" onclick= 'editFormAffiche(<?= $row["id"]?>)' data-bs-toggle="modal" data-bs-target="#modal-task"><i class="bi bi-pencil-fill"></i></span>
+											</div>
+										</div>									
 									</button>
+
 									<?php $CToDo++; ?>
 								<?php endif; ?>
 							<?php endwhile;?>
@@ -110,24 +109,33 @@
 							<?php $getData = GetTasks($conn);?>
 							<?php while($row = mysqli_fetch_assoc($getData)): ;?>
 								<?php if($row['status_id'] == 2): ?>
-									<button id = "<?= $row['id']?>" class="w-100 border-0 border-bottom border-1 border-dark d-flex pb-5px btn11">
-									<input type="hidden" id=<?php echo $row['id']."s";?> value= "<?php echo $row['status_id']; ?>">
-									<div class="text-start pt-1">
-										<i class="bi bi-question-circle fs-17px text-success"></i> 
-									</div>
-									<div class="ps-3 text-start">
-									<div class="fw-bold" id=<?php echo $row['id']."t";?>  value ="<?php echo $row["title"]; ?>" > <?= $row["title"] ?></div>
-									<div class="">
-										<div class="text-secondary" id=<?php echo $row['id']."dt";?> value= "<?php echo $row['task_datetime']; ?>" >#<?php echo $row['id'] . " created on " . $row['task_datetime']; ?></div>
-										<div class="description" title="<?= $row['description']; ?>" id=<?php echo $row['id']."dscrp";?> value= "<?php echo $row['description']; ?>" ><?= $row['description']; ?></div>
-									</div>
-									<div class="">
-										<span class="btn-primary rounded ps-2 pe-2 fw-bold hightcls" id=<?php echo $row['id']."p";?> value= "<?php echo $row['priority_id']; ?>" ><?= $row['priority']; ?></span>
-										<span class="btn-muted rounded ps-2 pe-2 text-dark fw-bold" id=<?php echo $row['id']."ty";?> value= "<?php echo $row['types_id']; ?>"><?= $row['type']; ?></span>
-										<a class="delete"  href="index.php?id=<?=$row['id']?>"><i class="bi bi-trash3-fill text-red"></i></a>
-										<span class="pen" onclick= 'editFormAffiche(<?= $row["id"]?>)' data-bs-toggle="modal" data-bs-target="#modal-task"><i class="bi bi-pencil-fill"></i></span>
-									</div>
-									</div>
+									<button id = "<?= $row['id']?>" class="w-100 border-0 border-bottom border-1 border-dark d-flex pb-5px btn11 position-relative">
+										<input type="hidden" id=<?php echo $row['id']."s";?> value= "<?php echo $row['status_id']; ?>">
+											
+										<div class="text-start pt-3">
+											<i class="spinner-border spinner-border-sm fs-15px text-success"></i> 
+										</div>
+
+										<div class= "d-flex pt-2 pb-2">
+											<div class="eleDiv">
+												<div class="ps-3 text-start">
+													<div class="fw-bolder " id=<?php echo $row['id']."t";?>  value ="<?php echo $row["title"]; ?>" > <?= $row["title"] ?></div>
+													<div class="">
+														<div class="text-secondary" id=<?php echo $row['id']."dt";?> value= "<?php echo $row['task_datetime']; ?>" >#<?php echo $row['id'] . " created on " . $row['task_datetime']; ?></div>
+														<div class="description" title="<?= $row['description']; ?>" id=<?php echo $row['id']."dscrp";?> value= "<?php echo $row['description']; ?>" ><?= $row['description']; ?></div>
+													</div>
+													<div class="">
+														<span class="btn-primary rounded ps-2 pe-2 fw-bold hightcls" id=<?php echo $row['id']."p";?> value= "<?php echo $row['priority_id']; ?>" ><?= $row['priority']; ?></span>
+														<span class="btn-muted rounded ps-2 pe-2 text-dark fw-bold" id=<?php echo $row['id']."ty";?> value= "<?php echo $row['types_id']; ?>"><?= $row['type']; ?></span>
+													</div>
+												</div>
+											</div>
+
+											<div class="position-absolute" style = "right:3%">	
+												<a class="delete d-block fs-20px"  href="index.php?id=<?=$row['id']?>"><i class="bi bi-trash3-fill text-red"></i></a>
+												<span class="pen fs-18px" onclick= 'editFormAffiche(<?= $row["id"]?>)' data-bs-toggle="modal" data-bs-target="#modal-task"><i class="bi bi-pencil-fill"></i></span>
+											</div>
+										</div>									
 									</button>
 									<?php $CInPrg++; ?>
 								<?php endif; ?>
@@ -150,24 +158,33 @@
 							<?php $getData = GetTasks($conn);?>
 							<?php while($row = mysqli_fetch_assoc($getData)): ;?>
 								<?php if($row['status_id'] == 3): ?>
-									<button id = "<?= $row['id']?>" class="w-100 border-0 border-bottom border-1 border-dark d-flex pb-5px btn11">
-									<input type="hidden" id=<?php echo $row['id']."s";?> value= "<?php echo $row['status_id']; ?>">
-									<div class="text-start pt-1">
-										<i class="bi bi-question-circle fs-17px text-success"></i> 
-									</div>
-									<div class="ps-3 text-start">
-									<div class="fw-bold" id=<?php echo $row['id']."t";?>  value ="<?php echo $row["title"]; ?>" > <?= $row["title"] ?></div>
-									<div class="">
-										<div class="text-secondary" id=<?php echo $row['id']."dt";?> value= "<?php echo $row['task_datetime']; ?>" >#<?php echo $row['id'] . " created on " . $row['task_datetime']; ?></div>
-										<div class="description" title="<?= $row['description']; ?>" id=<?php echo $row['id']."dscrp";?> value= "<?php echo $row['description']; ?>" ><?= $row['description']; ?></div>
-									</div>
-									<div class="">
-										<span class="btn-primary rounded ps-2 pe-2 fw-bold hightcls" id=<?php echo $row['id']."p";?> value= "<?php echo $row['priority_id']; ?>" ><?= $row['priority']; ?></span>
-										<span class="btn-muted rounded ps-2 pe-2 text-dark fw-bold" id=<?php echo $row['id']."ty";?> value= "<?php echo $row['types_id']; ?>"><?= $row['type']; ?></span>
-										<a class="delete" href="index.php?id=<?=$row['id']?>" ><i class="bi bi-trash3-fill text-red"></i></a>
-										<span class="pen" onclick= 'editFormAffiche(<?= $row["id"]?>)' data-bs-toggle="modal" data-bs-target="#modal-task"><i class="bi bi-pencil-fill"></i></span>
-									</div>
-									</div>
+									<button id = "<?= $row['id']?>" class="w-100 border-0 border-bottom border-1 border-dark d-flex pb-5px btn11 position-relative">
+										<input type="hidden" id=<?php echo $row['id']."s";?> value= "<?php echo $row['status_id']; ?>">
+											
+										<div class="text-start pt-3">
+											<i class="bi bi-check-circle fs-15px text-success"></i> 
+										</div>
+
+										<div class= "d-flex pt-2 pb-2">
+											<div class="eleDiv">
+												<div class="ps-3 text-start">
+													<div class="fw-bolder " id=<?php echo $row['id']."t";?>  value ="<?php echo $row["title"]; ?>" > <?= $row["title"] ?></div>
+													<div class="">
+														<div class="text-secondary" id=<?php echo $row['id']."dt";?> value= "<?php echo $row['task_datetime']; ?>" >#<?php echo $row['id'] . " created on " . $row['task_datetime']; ?></div>
+														<div class="description" title="<?= $row['description']; ?>" id=<?php echo $row['id']."dscrp";?> value= "<?php echo $row['description']; ?>" ><?= $row['description']; ?></div>
+													</div>
+													<div class="">
+														<span class="btn-primary rounded ps-2 pe-2 fw-bold hightcls" id=<?php echo $row['id']."p";?> value= "<?php echo $row['priority_id']; ?>" ><?= $row['priority']; ?></span>
+														<span class="btn-muted rounded ps-2 pe-2 text-dark fw-bold" id=<?php echo $row['id']."ty";?> value= "<?php echo $row['types_id']; ?>"><?= $row['type']; ?></span>
+													</div>
+												</div>
+											</div>
+
+											<div class="position-absolute" style = "right:3%">	
+												<a class="delete d-block fs-20px"  href="index.php?id=<?=$row['id']?>"><i class="bi bi-trash3-fill text-red"></i></a>
+												<span class="pen fs-18px" onclick= 'editFormAffiche(<?= $row["id"]?>)' data-bs-toggle="modal" data-bs-target="#modal-task"><i class="bi bi-pencil-fill"></i></span>
+											</div>
+										</div>									
 									</button>
 									<?php $CDone++; ?>
 								<?php endif; ?>
@@ -181,7 +198,7 @@
 			</div>
 		</div>
 		<!-- END #content -->
-		
+									
 		<!-- BEGIN scroll-top-btn -->
 		<a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top" data-toggle="scroll-to-top"><i class="fa fa-angle-up"></i></a>
 		<!-- END scroll-top-btn -->
