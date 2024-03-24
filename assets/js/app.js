@@ -9,7 +9,6 @@ var addTaskbtn = document.querySelector("#AddTaskBtn");
 
 var form = document.forms['modalForm'];
 
-
 afficher();
 
 function clearList(){
@@ -26,71 +25,34 @@ function afficher(){ //Read
     let countDone = 0;
 
     for(let i = 0; i < tasks.length; i++){
+        var button = `<button data-id= "${tasks[i].id}" class="w-100 border-0 border-bottom border-1 border-dark d-flex pb-5px btn11">
+        <div class="text-start pt-1">
+            <i class="bi bi-question-circle fs-17px text-success"></i> 
+        </div>
+        <div class="ps-3 text-start">
+            <div class="fw-bold">${tasks[i].title}</div>
+            <div class="">
+                <div class="text-secondary">#${tasks[i].id} created in ${tasks[i].date}</div>
+                <div class="description" title="${tasks[i].description}">${tasks[i].description}</div>
+            </div>
+            <div class="">
+                <span class="btn-primary rounded ps-2 pe-2 fw-bold hightcls">${tasks[i].type}</span>
+                <span class="btn-muted rounded ps-2 pe-2 text-dark fw-bold">${tasks[i].priority}</span>
+                <span class="delete" onclick='deletElement(${tasks[i].id})'><i class="bi bi-trash3-fill text-red"></i></span>
+                <span class="pen" onclick= 'editFormAffiche(${tasks[i].id})' data-bs-toggle="modal" data-bs-target="#modal-task"><i class="bi bi-pencil-fill"></i></span>
+            </div>
+        </div>
+        </button> `
         if(tasks[i].status ===  "To Do"){
             countToDo++;
-            todoList.innerHTML += 
-            `<button data-id= "${tasks[i].id}" class="w-100 border-0 border-bottom border-1 border-dark d-flex pb-5px btn11">
-                <div class="text-start pt-1">
-                    <i class="bi bi-question-circle fs-17px text-success"></i> 
-                </div>
-                <div class="ps-3 text-start">
-                    <div class="fw-bold">${tasks[i].title}</div>
-                    <div class="">
-                        <div class="text-secondary">#${tasks[i].id} created in ${tasks[i].date}</div>
-                        <div class="description" title="${tasks[i].description}">${tasks[i].description}</div>
-                    </div>
-                    <div class="">
-                        <span class="btn-primary rounded ps-2 pe-2 fw-bold hightcls">${tasks[i].type}</span>
-                        <span class="btn-muted rounded ps-2 pe-2 text-dark fw-bold">${tasks[i].priority}</span>
-                        <span class="delete" onclick='deletElement(${tasks[i].id})'><i class="bi bi-trash3-fill text-red"></i></span>
-                        <span class="pen" onclick= 'editFormAffiche(${tasks[i].id})' data-bs-toggle="modal" data-bs-target="#modal-task"><i class="bi bi-pencil-fill"></i></span>
-                    </div>
-                </div>
-            </button> `
+            todoList.innerHTML += button;
 
         } else if(tasks[i].status ===  "In Progress"){
             countInProg++;
-            InProgress.innerHTML +=
-            `<button data-id= "${tasks[i].id}" class="w-100 border-0 border-bottom border-1 border-dark d-flex pb-5px btn11">
-            <div class="text-start pt-2">
-                <i class="spinner-border spinner-border-sm fs-10px text-success"></i> 
-            </div>
-            <div class="ps-3 text-start">
-                <div class="fw-bold">${tasks[i].title}</div>
-                <div class="">
-                    <div class="text-secondary">#${tasks[i].id} created in ${tasks[i].date}</div>
-                    <div class="description" title="${tasks[i].description}">${tasks[i].description}</div>
-                </div>
-                <div class="">
-                    <span class="btn-primary rounded ps-2 pe-2 fw-bold hightcls">${tasks[i].type}</span>
-                    <span class="btn-muted rounded ps-2 pe-2 text-dark fw-bold">${tasks[i].priority}</span>
-                    <span class="delete" onclick='deletElement(${tasks[i].id})'><i class="bi bi-trash3-fill text-red"></i></span>
-                    <span class="pen" onclick= 'editFormAffiche(${tasks[i].id})' data-bs-toggle="modal" data-bs-target="#modal-task"><i class="bi bi-pencil-fill"></i></span>
-                </div>
-            </div>
-            </button>`
+            InProgress.innerHTML += button;
         } else if(tasks[i].status === "Done"){
             countDone++;
-            Done.innerHTML +=
-            `<button data-id= "${tasks[i].id}" class="w-100 border-0 border-bottom border-1 border-dark d-flex pb-5px btn11">
-            <div class="text-start pt-1">
-                <i class="bi bi-check-circle fs-17px text-success"></i> 
-            </div>
-            <div class="ps-3 text-start">
-                <div class="fw-bold">${tasks[i].title}</div>
-                <div class="">
-                    <div class="text-secondary">#${tasks[i].id} created in ${tasks[i].date}</div>
-                    <div class="description" title="${tasks[i].description}">${tasks[i].description}</div>
-                </div>
-                <div class="">
-                    <span class="btn-primary rounded ps-2 pe-2 fw-bold hightcls">${tasks[i].type}</span>
-                    <span class="btn-muted rounded ps-2 pe-2 text-dark fw-bold">${tasks[i].priority}</span>
-                    <span class="delete" onclick='deletElement(${tasks[i].id})'><i class="bi bi-trash3-fill text-red"></i></span>
-                    <span class="pen" onclick= 'editFormAffiche(${tasks[i].id})' data-bs-toggle="modal" data-bs-target="#modal-task"><i class="bi bi-pencil-fill"></i></span>
-                </div>
-            </div>
-            
-            </button>`
+            Done.innerHTML += button;
         }
     }
 
@@ -100,7 +62,7 @@ function afficher(){ //Read
     
 }
 
-function ajouter2(){ //Create
+function ajouter(){ //Create
 
     if(form.title.value == "" || form.status.value == "Default"){
         alert("No Enough Inputs\nFill Status or Title");
@@ -127,7 +89,7 @@ addTaskbtn.addEventListener('click', ()=>{ //Change appearence of form when clic
     form.reset();
     document.getElementById("modalTask").innerHTML = "Add Task";
     document.getElementById("modalFooter").innerHTML= `<button type="button" class="btn btn2" data-bs-dismiss="modal">Close</button>
-    <button type="button" class="btn bg-white" onclick="ajouter2()" id="save" data-bs-dismiss="modal" name="saveChanges">Save changes!</button>`;
+    <button type="button" class="btn bg-white" onclick="ajouter()" id="save" data-bs-dismiss="modal" name="saveChanges">Save changes!</button>`;
 })
 
 function searchById(id){
