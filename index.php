@@ -250,7 +250,7 @@
 							<div class="mb-3">
 								<label for="stat_Inpt" class="fw-bold">Status:</label>
 								<select id="stat_Inpt" class="form-select" name="status" required>
-									<option svalue="">Please select</option>
+									<option value="">Please select</option>
 									<option value = "1">To Do</option>
 									<option value = "2">In progress</option>
 									<option value = "3">Done</option>

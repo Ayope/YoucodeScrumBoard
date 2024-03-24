@@ -58,8 +58,7 @@
     }
 
     function deleteTask($conn)
-    {
-        
+    {  
         $sql = "DELETE FROM `tasks` WHERE id = $_GET[id]";
         $results = mysqli_query($conn, $sql);
         
